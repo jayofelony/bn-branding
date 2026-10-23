@@ -5,17 +5,17 @@ Google Play asks for. Google requires a publicly reachable page **on a domain wh
 you can verify by DNS** for the privacy policy and for developer/package verification; a
 `raw.githubusercontent.com` URL or a bare `*.github.io` subdomain does not qualify.
 
-Target: host these at **`https://bazookanoodles.evemarketscanner.com/`** (same setup as Kings
+Target: host these at **`https://bazooka-noodles.evemarketscanner.com/`** (same setup as Kings
 and Fillomino; `evemarketscanner.com` is already verified in Google Search Console).
 
 ## Files
 
 | File | Live URL |
 |---|---|
-| `index.html` | `https://bazookanoodles.evemarketscanner.com/` |
-| `privacy-policy.html` | `https://bazookanoodles.evemarketscanner.com/privacy-policy.html` |
-| `terms-of-service.html` | `https://bazookanoodles.evemarketscanner.com/terms-of-service.html` |
-| `app-ads.txt` | `https://bazookanoodles.evemarketscanner.com/app-ads.txt` |
+| `index.html` | `https://bazooka-noodles.evemarketscanner.com/` |
+| `privacy-policy.html` | `https://bazooka-noodles.evemarketscanner.com/privacy-policy.html` |
+| `terms-of-service.html` | `https://bazooka-noodles.evemarketscanner.com/terms-of-service.html` |
+| `app-ads.txt` | `https://bazooka-noodles.evemarketscanner.com/app-ads.txt` |
 | `style.css`, `assets/…` | supporting files (logo, icon, feature graphic, screenshots, font) |
 
 `app-ads.txt` authorises Google AdMob for this app. Its publisher line must stay identical to the
@@ -31,17 +31,17 @@ address later if you set one up).
 2. Copy the contents of this `site/` folder into the **root** of that repo and push to `main`.
    Copy **every** file, `app-ads.txt` included: AdMob reads it from this domain.
 3. Repo → **Settings → Pages → Source: "Deploy from a branch" → `main` / `(root)`**.
-4. Same page → **Custom domain** → `bazookanoodles.evemarketscanner.com` → Save.
+4. Same page → **Custom domain** → `bazooka-noodles.evemarketscanner.com` → Save.
    GitHub adds a `CNAME` file to the repo and provisions HTTPS once DNS resolves.
 
 ## Step 2 — DNS (for evemarketscanner.com)
 
 ```
 Type   Name             Value
-CNAME  bazookanoodles   jayofelony.github.io.
+CNAME  bazooka-noodles  jayofelony.github.io.
 ```
 
-Wait until it resolves, check that `https://bazookanoodles.evemarketscanner.com/` loads, and
+Wait until it resolves, check that `https://bazooka-noodles.evemarketscanner.com/` loads, and
 enable **Enforce HTTPS** in the Pages settings.
 
 ## Step 3 — Google Search Console
@@ -55,8 +55,8 @@ subdomain, including `bazookanoodles.`. Nothing to add.
 |---|---|
 | App name | `Bazooka Noodles` |
 | Package | `com.xbitsnl.bazookanoodles` |
-| Website | `https://bazookanoodles.evemarketscanner.com/` |
-| Privacy policy | `https://bazookanoodles.evemarketscanner.com/privacy-policy.html` |
+| Website | `https://bazooka-noodles.evemarketscanner.com/` |
+| Privacy policy | `https://bazooka-noodles.evemarketscanner.com/privacy-policy.html` |
 | Email | `oudshoorn.jeroen@gmail.com` |
 
 Store listing copy, Data safety answers and graphics are in `../store/`.

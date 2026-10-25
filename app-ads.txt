@@ -1,6 +1,6 @@
 # Authorized sellers for the Bazooka Noodles Android app (AdMob).
 #
-# Served at https://bazooka-noodles.evemarketscanner.com/app-ads.txt, the Website field of the
+# Served at https://bazooka-noodles.xbitsnlgaming.com/app-ads.txt, the Website field of the
 # Play Store listing. The same publisher line is in the Kings site and in the eve-market-scanner
 # repo (static/app-ads.txt, apex domain), because the crawler may resolve the developer URL to
 # either the subdomain or the root domain. Change the publisher line everywhere or they drift apart.

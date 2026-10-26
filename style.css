@@ -17,6 +17,11 @@
   --green-deep: #3a8d39;
   --ink: #f6ebde;
   --muted: #c7ae95;
+  /* Rariteitskleuren uit de game (SkinCatalog.TIER_COLORS) */
+  --tier-common: #b8b8b8;
+  --tier-rare: #4da6ff;
+  --tier-epic: #b86bff;
+  --tier-legendary: #ffa626;
   --max: 980px;
   --text: 760px;
 }
@@ -34,11 +39,25 @@ body {
 
 a { color: var(--pink); }
 a:hover { color: var(--cream); }
+:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; border-radius: 6px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 20;
+  padding: 10px 16px; border-radius: 12px;
+  background: var(--card); color: var(--cream);
+}
+.skip:focus { top: 12px; }
 
 h1, h2, h3, .display {
   font-family: "Lilita One", "Arial Black", sans-serif;
   font-weight: 400;
   letter-spacing: 0.5px;
+  line-height: 1.15;
 }
 
 /* --- Hero (home page) --------------------------------------------------- */
@@ -74,20 +93,34 @@ h1, h2, h3, .display {
 }
 
 .hero .tagline {
-  margin: 14px 0 26px;
+  margin: 14px 0 10px;
   font-family: "Lilita One", sans-serif;
   font-size: clamp(22px, 4vw, 30px);
   color: var(--cream);
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
 }
 
+.status {
+  text-wrap: balance;
+  margin: 0 0 20px;
+  font-family: "Lilita One", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
 .buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
+/* Witte letters met een rand, zoals in de game (Outline Everything):
+   zonder rand haalt wit op roze maar 2,7:1. */
 .btn {
   display: inline-block;
   font-family: "Lilita One", sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   color: #fff;
+  -webkit-text-stroke: 7px var(--outline);
+  paint-order: stroke fill;
   text-decoration: none;
   padding: 12px 28px 14px;
   border-radius: 18px;
@@ -97,9 +130,7 @@ h1, h2, h3, .display {
   transition: transform 0.1s, border-bottom-width 0.1s;
 }
 .btn:hover { color: #fff; transform: translateY(2px); border-bottom-width: 4px; }
-.btn.play { background: var(--green); border-bottom-color: var(--green-deep); }
-.btn.soon { background: #5a4434; border-bottom-color: #3d2d22; cursor: default; }
-.btn.soon:hover { transform: none; border-bottom-width: 6px; }
+.btn:active { transform: translateY(5px); border-bottom-width: 1px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); }
 
 @keyframes bob {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -149,7 +180,8 @@ nav {
   z-index: 10;
 }
 
-nav a { margin: 0 12px; text-decoration: none; font-size: 15px; }
+nav a { display: inline-block; margin: 0 6px; padding: 8px 6px; text-decoration: none; font-size: 15px; }
+nav a[aria-current="page"] { color: var(--cream); }
 
 /* --- Inhoud ------------------------------------------------------------- */
 
@@ -181,33 +213,100 @@ h3 { color: var(--cream); margin: 10px 0 6px; font-size: 21px; }
 
 .lead { font-size: 19px; max-width: var(--text); }
 
+/* --- Goed om te weten (direct onder de opening) ------------------------- */
+
+.good-to-know { margin-top: 28px; text-align: center; }
+
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.facts li {
+  margin: 0;
+  padding: 8px 16px 10px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-bottom: 4px solid var(--line);
+  font-family: "Lilita One", sans-serif;
+  font-size: 18px;
+  color: var(--cream);
+}
+
+.age { margin: 12px 0 0; color: var(--muted); font-size: 15px; text-wrap: balance; }
+
+/* Telefoon: twee blokjes per rij in plaats van vier rijen, menu op één regel
+   (de studiolink staat ook in de voettekst). */
+@media (max-width: 480px) {
+  .facts { gap: 8px; }
+  .facts li { font-size: 15px; padding: 6px 12px 8px; }
+  nav a { margin: 0 2px; font-size: 14px; }
+  nav a.studio { display: none; }
+  .status span { display: block; }
+  .status .sep { display: none; }
+}
+
+/* --- Screenshots ------------------------------------------------------------ */
+
+.shot { margin: 0 0 22px; }
+
+.shot img,
+.gallery img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1920 / 966; /* zo groot als de screenshots zijn: niets afsnijden */
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.shot img { box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45); }
+
+.shot figcaption,
+.gallery figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; }
+
 ul { padding-left: 22px; }
 li { margin: 6px 0; }
 
 .features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
   gap: 18px;
 }
 
+/* Kaarten als in de shop: donker vlak, rand en onderrand in een rariteitskleur. */
 .feature {
+  --tier: var(--tier-common);
   background: var(--card);
-  border: 1px solid var(--line);
-  border-bottom: 6px solid var(--line);
-  border-radius: 20px;
-  padding: 20px 22px 18px;
+  border: 2px solid color-mix(in srgb, var(--tier) 55%, var(--line));
+  border-bottom: 8px solid var(--tier);
+  border-radius: 22px;
+  padding: 0 22px 20px;
+  overflow: hidden;
 }
 
-.feature svg {
-  width: 46px;
-  height: 46px;
-  padding: 9px;
-  border-radius: 14px;
-  background: var(--pink);
-  color: #fff;
+.feature.tier-rare { --tier: var(--tier-rare); }
+.feature.tier-epic { --tier: var(--tier-epic); }
+.feature.tier-legendary { --tier: var(--tier-legendary); }
+
+.feature img {
+  display: block;
+  width: calc(100% + 44px);
+  height: auto;
+  margin: 0 -22px 4px;
+  background: radial-gradient(ellipse at 50% 60%, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12) 70%);
 }
 
+.feature h3 { margin-top: 6px; }
 .feature p { margin: 4px 0 0; color: var(--muted); font-size: 16px; }
+
+.languages { margin: 18px 0 0; color: var(--muted); font-size: 16px; }
 
 .steps {
   counter-reset: step;
@@ -240,6 +339,8 @@ li { margin: 6px 0; }
   border-radius: 50%;
   background: var(--green);
   color: #fff;
+  -webkit-text-stroke: 6px var(--green-deep); /* wit op groen haalt zonder rand maar 2,2:1 */
+  paint-order: stroke fill;
   font-family: "Lilita One", sans-serif;
   font-size: 20px;
 }
@@ -251,7 +352,8 @@ li { margin: 6px 0; }
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 12px;
+  padding: 4px 4px 14px;
+  scroll-padding-inline: 4px;
   scrollbar-color: var(--pink-deep) var(--bg-soft);
 }
 
@@ -261,17 +363,9 @@ li { margin: 6px 0; }
 
 .gallery figure { margin: 0; scroll-snap-align: start; }
 
-.gallery img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  display: block;
-}
+/* --- Afsluiter: de status nog een keer ---------------------------------- */
 
-.gallery figcaption { color: var(--muted); font-size: 14px; margin-top: 6px; }
+.get .status { color: var(--cream); font-size: 21px; margin-bottom: 8px; text-shadow: none; }
 
 .card {
   background: var(--card);
@@ -305,5 +399,6 @@ footer nav { position: static; background: none; border: 0; padding: 0 0 10px; b
 
 @media (prefers-reduced-motion: reduce) {
   .hero .logo { animation: none; }
+  .btn { transition: none; }
   html { scroll-behavior: auto; }
 }

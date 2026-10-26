@@ -28,13 +28,14 @@
   <p class="meta">
     Applies to: <strong>Bazooka Noodles</strong> for Android (package <code>com.xbitsnl.bazookanoodles</code>),
     published by xBitsNL&nbsp;Gaming.<br>
-    Effective date: 23&nbsp;October&nbsp;2026 &nbsp;&middot;&nbsp; Last updated: 23&nbsp;October&nbsp;2026
+    Effective date: 23&nbsp;October&nbsp;2026 &nbsp;&middot;&nbsp; Last updated: 26&nbsp;October&nbsp;2026
   </p>
 
   <div class="card">
     <h3>In short</h3>
     <ul>
-      <li>Bazooka Noodles is a single-player game against computer-controlled worms. It does <strong>not</strong> require an account and does not ask for your name, email, contacts, photos or location.</li>
+      <li>Bazooka Noodles is played against computer-controlled worms, or with friends who join your game with a room code. It does <strong>not</strong> require an account and does not ask for your email, contacts, photos or location.</li>
+      <li>When you play with friends, the phones connect directly to each other and share your player name, skin, IP address and gameplay data with the players in that room only; a connection service creates the room code and stores nothing afterwards (section&nbsp;6).</li>
       <li>Your coins, unlocked skins, scores and settings are stored <strong>only on your device</strong>. We never receive them.</li>
       <li>The game shows <strong>full-screen ads from Google&nbsp;AdMob</strong> between rounds and uses <strong>Google&nbsp;Firebase</strong> (Analytics, Crashlytics, Remote Config and In-App Messaging). These Google services collect device and usage data, including an advertising or app identifier, as described below.</li>
       <li>In the EEA, the UK and Switzerland you are asked for consent before personalised ads are shown and before analytics data is stored. You can change your choice at any time under <strong>Settings&nbsp;&rarr; Privacy options</strong>.</li>
@@ -128,7 +129,31 @@
     <a href="https://firebase.google.com/support/privacy" rel="noopener" target="_blank">Firebase privacy and security terms</a>.
   </p>
 
-  <h2>6. Legal bases (EEA / UK)</h2>
+  <h2>6. Playing with friends (room codes)</h2>
+  <p>
+    &ldquo;Play with friends&rdquo; lets one player host a game on their phone and others join with a room code.
+    The phones then connect <strong>directly to each other</strong> (peer-to-peer, WebRTC); the game itself does not
+    run on our servers. To make that connection:
+  </p>
+  <ul>
+    <li>a small <strong>connection service</strong> (run for us by Cloudflare) creates the room code and passes the
+      technical connection details between the host and the players who join. It sees your IP address while you
+      connect, keeps the room only while it exists (at most two hours) and stores no names, scores or logs with IP
+      addresses;</li>
+    <li>the phones in a room exchange their <strong>IP addresses</strong> (needed for a direct connection), your
+      chosen <strong>player name and skin</strong>, and gameplay data (steering, positions, scores) &mdash; only with
+      the other players in that room;</li>
+    <li>while a host waits in the lobby, the game announces the room on your <strong>local Wi-Fi network</strong>
+      (host name, number of players and the room code) so friends nearby can find it under &ldquo;Games
+      nearby&rdquo;.</li>
+  </ul>
+  <p>
+    Only play with people you know: share the room code yourself. There is no chat. Firebase Analytics records
+    whether connecting worked and how long it took, without the room code or names. Coins and scores you earn in a
+    room are stored on your own device, as in section&nbsp;2.
+  </p>
+
+  <h2>7. Legal bases (EEA / UK)</h2>
   <ul>
     <li><strong>Consent</strong> &mdash; personalised advertising, and analytics storage where consent mode requires it.</li>
     <li><strong>Legitimate interests</strong> &mdash; showing non-personalised ads, crash reporting and fixing errors,
@@ -137,16 +162,17 @@
     <li><strong>Performance of a contract</strong> &mdash; processing an in-app purchase and delivering the purchased item.</li>
   </ul>
 
-  <h2>7. Permissions</h2>
+  <h2>8. Permissions</h2>
   <p>
-    The game requests the <code>INTERNET</code> and network-state permissions to contact Google AdMob, Firebase and
-    Google&nbsp;Play, and declares the <code>AD_ID</code> permission so the advertising identifier can be used for the
+    The game requests the <code>INTERNET</code> and network-state permissions to contact Google AdMob, Firebase,
+    Google&nbsp;Play and, when you play with friends, the other phones in your room. It requests the Wi-Fi state and
+    multicast permissions only to find &ldquo;Games nearby&rdquo; on your local network. It also declares the <code>AD_ID</code> permission so the advertising identifier can be used for the
     advertising and analytics described above. It requests <code>VIBRATE</code> for short vibrations during play (you
     can turn this off in Settings). Google&rsquo;s SDKs also add technical permissions such as wake lock and install
     referrer. The game does not request location, camera, microphone, contacts or storage permissions.
   </p>
 
-  <h2>8. What we do not do</h2>
+  <h2>9. What we do not do</h2>
   <ul>
     <li>We do not sell your personal data for money.</li>
     <li>We do not collect your precise location, contacts, photos, files or the contents of other apps.</li>
@@ -159,7 +185,7 @@
     with your consent; elsewhere, you can limit it through your device&rsquo;s ad settings.
   </p>
 
-  <h2>9. Children</h2>
+  <h2>10. Children</h2>
   <p>
     Bazooka Noodles contains cartoon violence (worms with bazookas and explosions). It is not directed at children
     under 13 (or under the age of digital consent in your country), is not listed in Google&nbsp;Play&rsquo;s
@@ -168,22 +194,25 @@
     and we will delete it.
   </p>
 
-  <h2>10. Data retention</h2>
+  <h2>11. Data retention</h2>
   <p>
     On-device data is kept until you delete it (uninstall or clear app data). Advertising, analytics, crash-report,
     remote-configuration and in-app-messaging data held by Google is retained and deleted according to Google&rsquo;s
     policies and our Firebase and AdMob settings (Firebase&nbsp;Analytics event data is retained for a limited period
     configured in the Firebase console). Records of your purchases are kept by Google under Google&rsquo;s policies.
+    The room-code connection service keeps a room only while it is open (at most two hours) and then deletes it.
   </p>
 
-  <h2>11. International transfers</h2>
+  <h2>12. International transfers</h2>
   <p>
     Google processes data for these services on servers that may be outside your country, including in the United
     States, under the safeguards (such as the EU&nbsp;Standard Contractual Clauses and the EU&ndash;US Data Privacy
-    Framework) described in Google&rsquo;s Privacy Policy.
+    Framework) described in Google&rsquo;s Privacy Policy. The room-code connection service runs on Cloudflare&rsquo;s
+    global network, which may handle your connection outside your country, under the safeguards described in the
+    <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener" target="_blank">Cloudflare Privacy Policy</a>.
   </p>
 
-  <h2>12. Your rights</h2>
+  <h2>13. Your rights</h2>
   <p>
     If you are in the EEA or UK, you have the right to access, correct, delete, restrict or object to the processing
     of your personal data, to withdraw consent, and to data portability. Residents of some other regions (for example
@@ -200,14 +229,14 @@
     complaint with your local data protection authority (in the Netherlands, the Autoriteit&nbsp;Persoonsgegevens).
   </p>
 
-  <h2>13. Changes to this policy</h2>
+  <h2>14. Changes to this policy</h2>
   <p>
     We may update this Privacy Policy. Material changes will be reflected by an updated date above and, where
     appropriate, announced in the game or on the Google&nbsp;Play listing. The Google&nbsp;Play Data&nbsp;safety section
     is kept consistent with this policy.
   </p>
 
-  <h2>14. Contact</h2>
+  <h2>15. Contact</h2>
   <p>
     xBitsNL&nbsp;Gaming — Jeroen&nbsp;Oudshoorn<br>
     <a href="mailto:support@xbitsnlgaming.com">support@xbitsnlgaming.com</a>

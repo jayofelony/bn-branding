@@ -19,6 +19,8 @@ GitHub can renew its certificate). The studio page at `https://www.xbitsnlgaming
 | `privacy-policy.html` | `https://bazooka-noodles.xbitsnlgaming.com/privacy-policy.html` |
 | `terms-of-service.html` | `https://bazooka-noodles.xbitsnlgaming.com/terms-of-service.html` |
 | `app-ads.txt` | `https://bazooka-noodles.xbitsnlgaming.com/app-ads.txt` |
+| `robots.txt` | `https://bazooka-noodles.xbitsnlgaming.com/robots.txt` |
+| `sitemap.xml` | `https://bazooka-noodles.xbitsnlgaming.com/sitemap.xml` (add a page here when you add one) |
 | `style.css`, `assets/…` | supporting files |
 
 Contact address used in the pages: `support@xbitsnlgaming.com` (Cloudflare Email Routing,
@@ -58,6 +60,12 @@ Store listing copy, Data safety answers and graphics are in `../store/`.
 - **Screenshots:** regenerate with
   `godot --path . --resolution 1920x1080 --script tools/store_screenshots.gd`
   and copy `store/screenshots/*.png` to `assets/screenshots/`.
+- **Gameplay video** (`assets/video/`): a 22 s silent loop cut from a phone screen recording
+  (0:24–0:46), 1280 px wide, MP4 (H.264) + WebM (VP9) + JPG poster, together ~3.5 MB. The full
+  video with sound is on YouTube (`https://youtu.be/5Jnta__JhfM`), linked under the clip and used
+  as the Play Store promo video. Re-cut with e.g.
+  `ffmpeg -ss 24 -t 22 -i rec.mp4 -an -vf "fps=30,scale=1280:-2" -c:v libx264 -crf 26 -movflags +faststart gameplay.mp4`
+  (WebM: `-c:v libvpx-vp9 -crf 36 -b:v 0`).
 - **Feature-card art** (`assets/art/`): regenerate with
   `godot --path . --script tools/render_site_art.gd` when worms, weapons or skins change.
 - **Privacy policy:** update it (and `../store/data-safety.md`) whenever an SDK is added or removed

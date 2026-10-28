@@ -51,8 +51,11 @@
   <section id="arena">
     <h2>Into the arena</h2>
     <figure class="shot">
-      <img src="assets/screenshots/2_battle.png" width="1920" height="966" alt="Gameplay: a long lava-skinned worm fires a bazooka while an explosion cuts a rival worm short">
-      <figcaption>Fire your bazooka and cut rivals down to size.</figcaption>
+      <video id="gameplay" width="1280" height="576" autoplay muted loop playsinline poster="assets/video/gameplay-poster.jpg" aria-label="Gameplay: a purple worm picks up a bazooka and grenades and blows rival worms down to size">
+        <source src="assets/video/gameplay.webm" type="video/webm">
+        <source src="assets/video/gameplay.mp4" type="video/mp4">
+      </video>
+      <figcaption>Fire your bazooka and cut rivals down to size. <a href="https://youtu.be/5Jnta__JhfM">Watch the full gameplay video on YouTube</a>.</figcaption>
     </figure>
     <p class="lead">
       <strong>Bazooka Noodles</strong> is a fast, cartoony worm arena game for Android by
@@ -144,6 +147,13 @@
   </nav>
   &copy; <span id="y">2026</span> xBitsNL Gaming. &ldquo;Google Play&rdquo; is a trademark of Google&nbsp;LLC.
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    // Minder beweging gevraagd: niet vanzelf afspelen, wel zelf kunnen starten.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const v = document.getElementById('gameplay');
+      v.removeAttribute('autoplay'); v.pause(); v.currentTime = 0; v.controls = true;
+    }
+  </script>
 </footer>
 
 </body>

@@ -55,11 +55,16 @@ Store listing copy, Data safety answers and graphics are in `../store/`.
 ## Keeping it in sync
 
 - **Logo, icon, feature graphic:** regenerate with `godot --path . --script tools/render_logo.gd`
-  and copy from `assets/branding/` (`logo.png`, `icon_512.png` → `assets/icon.png`,
+  and copy from `assets/branding/` (`logo.png`, `icon_512.png` → `assets/icon.png` and, scaled to 180 px, `assets/apple-touch-icon.png`,
   `feature_graphic.png` → `assets/feature.png`, `splash_bg.png` → `assets/backdrop.png`).
 - **Screenshots:** regenerate with
   `godot --path . --resolution 1920x1080 --script tools/store_screenshots.gd`
-  and copy `store/screenshots/*.png` to `assets/screenshots/`.
+  and convert `store/screenshots/*.png` to WebP in `assets/screenshots/` (the site only uses WebP), e.g.
+  `for f in ../store/screenshots/*.png; do ffmpeg -i "$f" -c:v libwebp -quality 82 assets/screenshots/$(basename "${f%.png}").webp; done`.
+- **SEO:** `index.html` carries JSON-LD (Organization, VideoGame/MobileApplication, VideoObject).
+  Keep it in step with the page (languages, video, screenshots); on release add the Play Store URL
+  as `"sameAs"`/`"installUrl"` on the game. Every page has a `<link rel="canonical">`; bump
+  `<lastmod>` in `sitemap.xml` when a page changes.
 - **Gameplay video** (`assets/video/`): a 22 s silent loop cut from a phone screen recording
   (0:24–0:46), 1280 px wide, MP4 (H.264) + WebM (VP9) + JPG poster, together ~3.5 MB. The full
   video with sound is on YouTube (`https://youtu.be/5Jnta__JhfM`), linked under the clip and used
